@@ -21,7 +21,7 @@ import java.nio.file.Paths;
 @SpireInitializer
 public class C204Launcher implements
         PostInitializeSubscriber {
-    public static JsonObject loadedReplay;
+    public static Replay loadedReplay;
 
     public static void initialize() {
         BaseMod.subscribe(new C204Launcher());
@@ -36,7 +36,7 @@ public class C204Launcher implements
         Gson gson = new Gson();
         String path = replay.getAbsolutePath().replaceAll(".+:", "");
         String json = Gdx.files.absolute(path).readString(String.valueOf(StandardCharsets.UTF_8));
-        loadedReplay = gson.fromJson(json, JsonObject.class);
-        System.out.println(loadedReplay);
+        loadedReplay = gson.fromJson(json, Replay.class);
+        System.out.println(loadedReplay.toString());
     }
 }
