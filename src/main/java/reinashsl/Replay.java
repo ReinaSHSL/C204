@@ -8,6 +8,7 @@ public class Replay {
     String NEOW;
 
     public class Floor {
+        int FLOOR_NUMBER;
         String[] ACTIONS;
     }
 }
