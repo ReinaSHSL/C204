@@ -20,7 +20,7 @@ public class ReplayRecorder implements
     }
 
     @Override
-    public void receiveCardUsed(AbstractCard abstractCard) {
+    public void receiveCardUsed(AbstractCard c) {
 
     }
 
@@ -35,7 +35,7 @@ public class ReplayRecorder implements
     }
 
     @Override
-    public void receivePostPotionUse(AbstractPotion abstractPotion) {
+    public void receivePostPotionUse(AbstractPotion po) {
 
     }
 }
