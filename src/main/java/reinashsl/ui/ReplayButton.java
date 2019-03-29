@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.screens.mainMenu.MainMenuScreen;
 import com.megacrit.cardcrawl.screens.mainMenu.MenuButton;
 import org.json.simple.JSONObject;
 import reinashsl.C204Launcher;
+import reinashsl.ReplayLoader;
 
 import javax.swing.*;
 import java.io.File;
@@ -56,7 +57,7 @@ public class ReplayButton {
                         Field f_label = MenuButton.class.getDeclaredField("label");
                         f_label.setAccessible(true);
                         f_label.set(__instance, "Load Replay [" + file.getName() + "]");
-                        C204Launcher.loadReplay(file);
+                        ReplayLoader.loadReplay(file);
                     }
                 }
             } catch (IllegalAccessException | NoSuchFieldException e) {
