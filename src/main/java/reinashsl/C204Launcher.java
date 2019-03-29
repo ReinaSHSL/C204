@@ -2,17 +2,7 @@ package reinashsl;
 
 import basemod.BaseMod;
 import basemod.interfaces.PostInitializeSubscriber;
-import com.badlogic.gdx.Gdx;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
-import com.google.gson.Gson;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-
-import java.io.File;
-import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 
 @SpireInitializer
 public class C204Launcher implements

@@ -7,7 +7,6 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.screens.mainMenu.MainMenuScreen;
 import com.megacrit.cardcrawl.screens.mainMenu.MenuButton;
 import org.json.simple.JSONObject;
-import reinashsl.C204Launcher;
 import reinashsl.ReplayLoader;
 
 import javax.swing.*;
