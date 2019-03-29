@@ -6,13 +6,16 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.screens.mainMenu.MainMenuScreen;
 import com.megacrit.cardcrawl.screens.mainMenu.MenuButton;
+import org.json.simple.JSONObject;
 import reinashsl.C204Launcher;
 
 import javax.swing.*;
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Field;
 
 public class ReplayButton {
+    public static JSONObject loadedReplay;
 
     @SpireEnum
     static MenuButton.ClickResult REPLAYS;
@@ -57,7 +60,7 @@ public class ReplayButton {
                         C204Launcher.loadReplay(file);
                     }
                 }
-            } catch (IllegalAccessException | NoSuchFieldException e) {
+            } catch (IllegalAccessException | NoSuchFieldException | IOException e) {
                 e.printStackTrace();
             }
         }

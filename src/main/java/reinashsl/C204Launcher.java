@@ -2,19 +2,26 @@ package reinashsl;
 
 import basemod.BaseMod;
 import basemod.interfaces.PostInitializeSubscriber;
+import com.badlogic.gdx.Gdx;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import org.apache.logging.log4j.core.util.IOUtils;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 @SpireInitializer
 public class C204Launcher implements
         PostInitializeSubscriber {
+    public static JsonObject loadedReplay;
 
     public static void initialize() {
         BaseMod.subscribe(new C204Launcher());
@@ -25,16 +32,10 @@ public class C204Launcher implements
 
     }
 
-    public static void loadReplay(File replay) {
-        JSONParser jsonParser = new JSONParser();
-        try {
-            FileReader reader = new FileReader(replay.getAbsoluteFile());
-            JsonArray a = (JsonArray) jsonParser.parse(reader);
-            for (Object o : a) {
-                System.out.println(o);
-            }
-        } catch (ParseException | IOException e) {
-            e.printStackTrace();
-        }
+    public static void loadReplay(File replay) throws IOException {
+        Gson gson = new Gson();
+        String json = Gdx.files.external(replay.getPath()).readString(String.valueOf(StandardCharsets.UTF_8));
+        loadedReplay = gson.fromJson(json, JsonObject.class);
+        System.out.println(loadedReplay);
     }
 }
