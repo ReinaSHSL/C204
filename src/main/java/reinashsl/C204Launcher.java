@@ -41,7 +41,7 @@ public class C204Launcher implements
         System.out.println(loadedReplay.SEED);
         System.out.println(loadedReplay.CHARACTER);
         System.out.println(Arrays.toString(loadedReplay.FLOOR_CHOICES));
-        System.out.println(Arrays.toString(loadedReplay.FLOORS));
+        System.out.println(loadedReplay.FLOORS);
         System.out.println(loadedReplay.NEOW);
     }
 }
