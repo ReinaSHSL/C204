@@ -11,7 +11,6 @@ import reinashsl.C204Launcher;
 
 import javax.swing.*;
 import java.io.File;
-import java.io.IOException;
 import java.lang.reflect.Field;
 
 public class ReplayButton {
