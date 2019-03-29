@@ -4,7 +4,7 @@ public class Replay {
     String SEED;
     String CHARACTER;
     String[] FLOORS;
-    String FLOOR_CHOICE;
+    String[] FLOOR_CHOICES;
     String[] MERCHANT_ACTIONS;
     String[] TURNS;
     String[] COMBAT_ACTIONS;
