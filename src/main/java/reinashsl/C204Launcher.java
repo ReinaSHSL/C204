@@ -34,7 +34,8 @@ public class C204Launcher implements
 
     public static void loadReplay(File replay) throws IOException {
         Gson gson = new Gson();
-        String json = Gdx.files.external(replay.getPath()).readString(String.valueOf(StandardCharsets.UTF_8));
+        String path = replay.getAbsolutePath().replaceAll(".+:", "");
+        String json = Gdx.files.absolute(path).readString(String.valueOf(StandardCharsets.UTF_8));
         loadedReplay = gson.fromJson(json, JsonObject.class);
         System.out.println(loadedReplay);
     }
