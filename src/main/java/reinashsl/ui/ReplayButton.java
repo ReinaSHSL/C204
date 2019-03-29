@@ -60,7 +60,7 @@ public class ReplayButton {
                         C204Launcher.loadReplay(file);
                     }
                 }
-            } catch (IllegalAccessException | NoSuchFieldException | IOException e) {
+            } catch (IllegalAccessException | NoSuchFieldException e) {
                 e.printStackTrace();
             }
         }
