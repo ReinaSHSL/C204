@@ -11,4 +11,5 @@ public class Replay {
     String[] EVENT_CHOICES;
     String[] REWARD_CHOICES;
     String[] BOSS_CHOICES;
+    String[] NEOW;
 }
