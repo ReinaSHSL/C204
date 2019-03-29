@@ -5,5 +5,5 @@ public class Replay {
     String CHARACTER;
     String[] FLOORS;
     String[] FLOOR_CHOICES;
-    String[] NEOW;
+    String NEOW;
 }
