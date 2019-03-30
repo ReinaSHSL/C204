@@ -6,7 +6,6 @@ import com.badlogic.gdx.Gdx;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 
 import java.io.File;
-import java.nio.file.FileSystems;
 
 @SpireInitializer
 public class C204Launcher implements
