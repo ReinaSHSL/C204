@@ -2,7 +2,11 @@ package reinashsl;
 
 import basemod.BaseMod;
 import basemod.interfaces.PostInitializeSubscriber;
+import com.badlogic.gdx.Gdx;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
+
+import java.io.File;
+import java.nio.file.FileSystems;
 
 @SpireInitializer
 public class C204Launcher implements
@@ -17,8 +21,16 @@ public class C204Launcher implements
 
     @Override
     public void receivePostInitialize() {
+        createReplayDirectory();
         replayRecorder = new ReplayRecorder();
         replayLoader = new ReplayLoader();
+    }
+
+    private void createReplayDirectory() {
+        File dir = new File(Gdx.files.getLocalStoragePath() + "replays" + File.separator);
+        if (!dir.exists()) {
+            dir.mkdir();
+        }
     }
 
 }
