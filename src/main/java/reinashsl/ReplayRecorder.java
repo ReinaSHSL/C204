@@ -75,8 +75,8 @@ public class ReplayRecorder implements
     @SuppressWarnings("unchecked")
     public void receiveRoomEntry(MapRoomNode r) {
         Floor floor = new Floor();
-        floorInfo.add(floor.toString());
-        floor.FLOOR_NUMBER = AbstractDungeon.floorNum;
+        floor.put("FLOOR_NUMBER", AbstractDungeon.floorNum);
+        floorInfo.add(floor);
         currentRunReplay.put("FLOORS", floorInfo);
     }
 }
