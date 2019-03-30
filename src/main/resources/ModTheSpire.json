@@ -1,0 +1,12 @@
+
+{
+  "modid": "C204",
+  "name": "C204",
+  "author_list": ["Reina"],
+  "description": "A replay system for Slay The Spire",
+  "version": "${project.version}",
+  "sts_version": "${SlayTheSpire.version}",
+  "mts_version": "${ModTheSpire.version}",
+  "dependencies": ["basemod"],
+  "update_json": ""
+}
