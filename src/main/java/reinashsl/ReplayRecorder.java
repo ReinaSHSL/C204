@@ -43,7 +43,14 @@ public class ReplayRecorder implements
 
     @Override
     public void receivePostDeath() {
-        String path = FileSystems.getDefault().getPath(Gdx.files.getLocalStoragePath() + "replays" + File.separator + Settings.seed.toString() + ".shsl").toString();
+        String path;
+        File doesThisExist;
+        do {
+            int i = 0;
+            path = FileSystems.getDefault().getPath(Gdx.files.getLocalStoragePath() + "replays" + File.separator + Settings.seed.toString() + i + ".shsl").toString();
+            ++i;
+            doesThisExist = new File(path);
+        } while (doesThisExist.exists());
         try (FileWriter fw = new FileWriter(path)){
             fw.write(currentRunReplay.toJSONString());
             fw.close();
