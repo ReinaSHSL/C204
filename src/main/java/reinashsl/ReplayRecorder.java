@@ -38,6 +38,13 @@ public class ReplayRecorder implements
         BaseMod.subscribe(this);
     }
 
+    @SuppressWarnings("unchecked")
+    public void addToCurrentFloorActions(String action) {
+        if (currentFloorActions != null) {
+            currentFloorActions.add(action);
+        }
+    }
+
     @Override
     @SuppressWarnings("unchecked")
     public void receiveCardUsed(AbstractCard c) {
