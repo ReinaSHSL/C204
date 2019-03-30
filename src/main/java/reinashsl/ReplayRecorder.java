@@ -48,9 +48,7 @@ public class ReplayRecorder implements
     @Override
     @SuppressWarnings("unchecked")
     public void receiveCardUsed(AbstractCard c) {
-        if (currentFloorActions != null) {
-            currentFloorActions.add("PLAYED " + c.cardID + " " + c.timesUpgraded + " " + c.misc);
-        }
+       addToCurrentFloorActions("PLAYED " + c.cardID + "UPGRADED " + c.timesUpgraded + "MISC " + c.misc);
     }
 
     @Override
