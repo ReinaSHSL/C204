@@ -14,15 +14,20 @@ public class ReplayLoader {
 
 
     public static void loadReplay(File replay) {
-        Gson gson = new Gson();
-        String path = replay.getAbsolutePath().replaceAll(".+:", "");
-        String json = Gdx.files.absolute(path).readString(String.valueOf(StandardCharsets.UTF_8));
-        C204Launcher.loadedReplay = gson.fromJson(json, Replay.class);
-        Settings.seed = Long.parseLong(C204Launcher.loadedReplay.SEED);
-        CardCrawlGame.chosenCharacter = AbstractPlayer.PlayerClass.valueOf(C204Launcher.loadedReplay.CHARACTER);
-        CardCrawlGame.mode = CardCrawlGame.GameMode.CHAR_SELECT;
-        AbstractDungeon.generateSeeds();
-        CardCrawlGame.mainMenuScreen.fadedOut = true;
+        try {
+            Gson gson = new Gson();
+            String path = replay.getAbsolutePath().replaceAll(".+:", "");
+            String json = Gdx.files.absolute(path).readString(String.valueOf(StandardCharsets.UTF_8));
+            C204Launcher.loadedReplay = gson.fromJson(json, Replay.class);
+            Settings.seed = Long.parseLong(C204Launcher.loadedReplay.SEED);
+            CardCrawlGame.chosenCharacter = AbstractPlayer.PlayerClass.valueOf(C204Launcher.loadedReplay.CHARACTER);
+            CardCrawlGame.mode = CardCrawlGame.GameMode.CHAR_SELECT;
+            AbstractDungeon.generateSeeds();
+            CardCrawlGame.mainMenuScreen.fadedOut = true;
+        } catch (Exception e) {
+            System.out.println("pls pick a valid replay");
+        }
+
     }
 
 }
