@@ -38,8 +38,7 @@ public class ReplayRecorder implements
     @Override
     public void receivePostDeath() {
         String path = FileSystems.getDefault().getPath(Gdx.files.getLocalStoragePath() + "replays" + File.separator + Settings.seed.toString() + ".shsl").toString();
-        try {
-            FileWriter fw = new FileWriter(path);
+        try (FileWriter fw = new FileWriter(path)){
             fw.write(currentRunReplay.toJSONString());
             System.out.println("Replay saved");
         } catch (IOException e) {
@@ -63,5 +62,6 @@ public class ReplayRecorder implements
         currentRunReplay = new JSONObject();
         currentRunReplay.put("SEED", Settings.seed.toString());
         currentRunReplay.put("CHARACTER", AbstractDungeon.player.chosenClass.toString());
+        System.out.println("START CHECK " + currentRunReplay.toString());
     }
 }
