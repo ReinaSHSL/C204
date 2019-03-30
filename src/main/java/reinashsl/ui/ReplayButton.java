@@ -13,11 +13,12 @@ import javax.swing.*;
 import java.io.File;
 import java.lang.reflect.Field;
 
+@SuppressWarnings("unused")
 public class ReplayButton {
     public static JSONObject loadedReplay;
 
     @SpireEnum
-    static MenuButton.ClickResult REPLAYS;
+    public static MenuButton.ClickResult REPLAYS;
 
     @SpirePatch(
             clz = MenuButton.class,

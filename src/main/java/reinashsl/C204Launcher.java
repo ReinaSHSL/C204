@@ -15,6 +15,7 @@ public class C204Launcher implements
     public static ReplayRecorder replayRecorder;
     public static ReplayLoader replayLoader;
 
+    @SuppressWarnings("unused")
     public static void initialize() {
         BaseMod.subscribe(new C204Launcher());
     }
@@ -26,6 +27,7 @@ public class C204Launcher implements
         replayLoader = new ReplayLoader();
     }
 
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     private void createReplayDirectory() {
         File dir = new File(Gdx.files.getLocalStoragePath() + "replays" + File.separator);
         if (!dir.exists()) {
