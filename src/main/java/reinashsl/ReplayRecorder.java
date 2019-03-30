@@ -20,6 +20,7 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
+import java.util.Arrays;
 
 public class ReplayRecorder implements
         PostPotionUseSubscriber,
@@ -31,14 +32,18 @@ public class ReplayRecorder implements
 {
     private JSONObject currentRunReplay;
     private JSONArray floorInfo = new JSONArray();
+    private JSONArray currentFloorActions = null;
 
     public ReplayRecorder() {
         BaseMod.subscribe(this);
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void receiveCardUsed(AbstractCard c) {
-
+        if (currentFloorActions != null) {
+            currentFloorActions.add("PLAYED " + c.cardID + " " + c.timesUpgraded + " " + c.misc);
+        }
     }
 
     @Override
@@ -81,9 +86,18 @@ public class ReplayRecorder implements
     @Override
     @SuppressWarnings("unchecked")
     public void receiveRoomEntry(MapRoomNode r) {
-        Floor floor = new Floor();
-        floor.put("FLOOR_NUMBER", AbstractDungeon.floorNum);
-        floorInfo.add(floor);
-        currentRunReplay.put("FLOORS", floorInfo);
+        if (currentFloorActions != null && !currentFloorActions.isEmpty()) {
+            Floor floor = new Floor();
+            floor.put("FLOOR_NUMBER", AbstractDungeon.floorNum);
+            floor.ACTIONS = new String[currentFloorActions.size()];
+            for (int i = 0; i < currentFloorActions.size(); i++) {
+                floor.ACTIONS[i] = (String) currentFloorActions.get(i);
+            }
+            floor.put("ACTIONS", Arrays.toString(floor.ACTIONS));
+            floorInfo.add(floor);
+            currentRunReplay.put("FLOORS", floorInfo);
+        }
+        currentFloorActions = new JSONArray();
     }
+
 }
