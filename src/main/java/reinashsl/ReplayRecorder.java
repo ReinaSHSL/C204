@@ -29,7 +29,8 @@ public class ReplayRecorder implements
         StartGameSubscriber,
         IEnterRoom
 {
-    private JSONObject currentRunReplay = new JSONObject();
+    private JSONObject currentRunReplay;
+    private JSONArray floorInfo = new JSONArray();
 
     public ReplayRecorder() {
         BaseMod.subscribe(this);
@@ -68,16 +69,14 @@ public class ReplayRecorder implements
         currentRunReplay = new JSONObject();
         currentRunReplay.put("SEED", Settings.seed.toString());
         currentRunReplay.put("CHARACTER", AbstractDungeon.player.chosenClass.toString());
-        System.out.println("START CHECK " + currentRunReplay.toString());
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public void receiveRoomEntry(MapRoomNode r) {
-        JSONArray newFloorInfo = new JSONArray();
         Floor floor = new Floor();
-        newFloorInfo.add(floor);
+        floorInfo.add(floor.toString());
         floor.FLOOR_NUMBER = AbstractDungeon.floorNum;
-        currentRunReplay.put("FLOORS", newFloorInfo);
+        currentRunReplay.put("FLOORS", floorInfo);
     }
 }
