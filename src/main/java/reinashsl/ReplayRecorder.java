@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import reinashsl.interfaces.IEndTurn;
 import reinashsl.interfaces.IEnterRoom;
 
 import java.io.File;
@@ -28,7 +29,8 @@ public class ReplayRecorder implements
         OnCardUseSubscriber,
         PostDeathSubscriber,
         StartGameSubscriber,
-        IEnterRoom
+        IEnterRoom,
+        IEndTurn
 {
     private JSONObject currentRunReplay;
     private JSONArray floorInfo = new JSONArray();
@@ -105,4 +107,8 @@ public class ReplayRecorder implements
         currentFloorActions = new JSONArray();
     }
 
+    @Override
+    public void onEndTurn() {
+        addToCurrentFloorActions("END_TURN");
+    }
 }
