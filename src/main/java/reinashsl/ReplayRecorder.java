@@ -79,7 +79,7 @@ public class ReplayRecorder implements
 
     @Override
     public void receivePostPotionUse(AbstractPotion po) {
-
+        addToCurrentFloorActions("POTION " + po.ID);
     }
 
     @Override
