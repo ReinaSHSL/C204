@@ -6,8 +6,12 @@ import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import reinashsl.interfaces.IEnterRoom;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -22,7 +26,8 @@ public class ReplayRecorder implements
         PostEnergyRechargeSubscriber,
         OnCardUseSubscriber,
         PostDeathSubscriber,
-        StartGameSubscriber
+        StartGameSubscriber,
+        IEnterRoom
 {
     private JSONObject currentRunReplay = new JSONObject();
 
@@ -64,5 +69,15 @@ public class ReplayRecorder implements
         currentRunReplay.put("SEED", Settings.seed.toString());
         currentRunReplay.put("CHARACTER", AbstractDungeon.player.chosenClass.toString());
         System.out.println("START CHECK " + currentRunReplay.toString());
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public void receiveRoomEntry(MapRoomNode r) {
+        JSONArray newFloorInfo = new JSONArray();
+        Floor floor = new Floor();
+        newFloorInfo.add(floor);
+        floor.FLOOR_NUMBER = AbstractDungeon.floorNum;
+        currentRunReplay.put("FLOORS", newFloorInfo);
     }
 }

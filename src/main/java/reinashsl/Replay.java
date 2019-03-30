@@ -7,8 +7,4 @@ public class Replay {
     String[] FLOOR_CHOICES;
     String NEOW;
 
-    public class Floor {
-        int FLOOR_NUMBER;
-        String[] ACTIONS;
-    }
 }
