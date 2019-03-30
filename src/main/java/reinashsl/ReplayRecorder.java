@@ -40,6 +40,7 @@ public class ReplayRecorder implements
         String path = FileSystems.getDefault().getPath(Gdx.files.getLocalStoragePath() + "replays" + File.separator + Settings.seed.toString() + ".shsl").toString();
         try (FileWriter fw = new FileWriter(path)){
             fw.write(currentRunReplay.toJSONString());
+            fw.close();
             System.out.println("Replay saved");
         } catch (IOException e) {
             e.printStackTrace();
