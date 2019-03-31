@@ -24,10 +24,18 @@ public class ReplayLoader {
             CardCrawlGame.mode = CardCrawlGame.GameMode.CHAR_SELECT;
             AbstractDungeon.generateSeeds();
             CardCrawlGame.mainMenuScreen.fadedOut = true;
-        } catch (Exception e) {
-            System.out.println("pls pick a valid replay");
+        } catch (NullPointerException e) {
+            yeet(e);
         }
 
+    }
+
+    public static void yeet(Exception e) {
+        try {
+            throw e;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
