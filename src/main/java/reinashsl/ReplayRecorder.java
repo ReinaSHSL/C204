@@ -8,9 +8,11 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
+import com.megacrit.cardcrawl.shop.StorePotion;
 import com.megacrit.cardcrawl.shop.StoreRelic;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import reinashsl.interfaces.IBuyPotion;
 import reinashsl.interfaces.IBuyRelic;
 import reinashsl.interfaces.IEndTurn;
 import reinashsl.interfaces.IEnterRoom;
@@ -29,7 +31,8 @@ public class ReplayRecorder implements
         StartGameSubscriber,
         IEnterRoom,
         IEndTurn,
-        IBuyRelic
+        IBuyRelic,
+        IBuyPotion
 {
     private JSONObject currentRunReplay;
     private JSONArray floorInfo = new JSONArray();
@@ -114,5 +117,10 @@ public class ReplayRecorder implements
     @Override
     public void onBuyRelic(StoreRelic r) {
         addToCurrentFloorActions("BOUGHT RELIC " + r.relic.relicId);
+    }
+
+    @Override
+    public void onBuyPotion(StorePotion p) {
+        addToCurrentFloorActions("BOUGHT POTION " + p.potion.ID);
     }
 }
