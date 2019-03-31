@@ -25,6 +25,7 @@ public class ReplayLoader {
             AbstractDungeon.generateSeeds();
             CardCrawlGame.mainMenuScreen.fadedOut = true;
         } catch (NullPointerException e) {
+            //YOUR JSON FIELDS ARE EMPTY
             yeet(e);
         }
 
