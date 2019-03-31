@@ -34,8 +34,8 @@ public class ReplayLoader {
     public static void yeet(Exception e) {
         try {
             throw e;
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 
