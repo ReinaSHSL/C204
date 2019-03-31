@@ -48,12 +48,6 @@ public class ReplayRecorder implements
     }
 
     @Override
-    @SuppressWarnings("unchecked")
-    public void receiveCardUsed(AbstractCard c) {
-       addToCurrentFloorActions("PLAYED " + c.cardID + "UPGRADED " + c.timesUpgraded + "MISC " + c.misc);
-    }
-
-    @Override
     public void receivePostDeath() {
         String path;
         File doesThisExist;
@@ -126,4 +120,11 @@ public class ReplayRecorder implements
     public void onBuyCard(AbstractCard c) {
         addToCurrentFloorActions("BOUGHT CARD" + c.cardID);
     }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public void receiveCardUsed(AbstractCard c) {
+        addToCurrentFloorActions("PLAYED " + c.cardID + "UPGRADED " + c.timesUpgraded + "MISC " + c.misc);
+    }
+
 }
