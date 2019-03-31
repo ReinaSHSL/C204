@@ -12,10 +12,7 @@ import com.megacrit.cardcrawl.shop.StorePotion;
 import com.megacrit.cardcrawl.shop.StoreRelic;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import reinashsl.interfaces.IBuyPotion;
-import reinashsl.interfaces.IBuyRelic;
-import reinashsl.interfaces.IEndTurn;
-import reinashsl.interfaces.IEnterRoom;
+import reinashsl.interfaces.*;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -32,7 +29,8 @@ public class ReplayRecorder implements
         IEnterRoom,
         IEndTurn,
         IBuyRelic,
-        IBuyPotion
+        IBuyPotion,
+        IBuyCard
 {
     private JSONObject currentRunReplay;
     private JSONArray floorInfo = new JSONArray();
@@ -122,5 +120,10 @@ public class ReplayRecorder implements
     @Override
     public void onBuyPotion(StorePotion p) {
         addToCurrentFloorActions("BOUGHT POTION " + p.potion.ID);
+    }
+
+    @Override
+    public void onBuyCard(AbstractCard c) {
+        addToCurrentFloorActions("BOUGHT CARD" + c.cardID);
     }
 }
