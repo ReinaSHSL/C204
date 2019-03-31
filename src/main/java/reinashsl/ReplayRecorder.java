@@ -8,8 +8,10 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
+import com.megacrit.cardcrawl.shop.StoreRelic;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import reinashsl.interfaces.IBuyRelic;
 import reinashsl.interfaces.IEndTurn;
 import reinashsl.interfaces.IEnterRoom;
 
@@ -26,7 +28,8 @@ public class ReplayRecorder implements
         PostDeathSubscriber,
         StartGameSubscriber,
         IEnterRoom,
-        IEndTurn
+        IEndTurn,
+        IBuyRelic
 {
     private JSONObject currentRunReplay;
     private JSONArray floorInfo = new JSONArray();
@@ -106,5 +109,10 @@ public class ReplayRecorder implements
     @Override
     public void onEndTurn() {
         addToCurrentFloorActions("END_TURN");
+    }
+
+    @Override
+    public void onBuyRelic(StoreRelic r) {
+        addToCurrentFloorActions("BOUGHT RELIC " + r.relic.relicId);
     }
 }
